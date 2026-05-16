@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wearther - Fashion First</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="app-container">
+        <header class="search-section">
+            <h1 class="logo">WEAR<span class="accent">THER</span></h1>
+            <div class="search-box">
+                <input type="text" id="city-input" placeholder="Enter city name..." autocomplete="off">
+                <p id="search-error" class="error-text hidden"></p>
+                <div id="confirmation-dialog" class="confirmation-box hidden">
+                    <p id="confirmation-text">Did you mean <span id="confirmed-location-name"></span>?</p>
+                    <div class="actions">
+                        <button id="btn-confirm" class="btn primary">Yes</button>
+                        <button id="btn-cancel" class="btn secondary">No</button>
+                    </div>
+                </div>
+                <div id="loading-indicator" class="loading hidden">Loading...</div>
+            </div>
+        </header>
+
+        <main class="content-section fashion-focused hidden" id="main-content">
+            <div class="outfit-column">
+                <section class="outfit-suggestion card primary-card">
+                    <div class="fashion-header">
+                        <h3 class="card-title">Today's Fit</h3>
+                        <h2 id="current-city" class="city-subtitle"></h2>
+                    </div>
+                    
+                    <div class="personalization-bar">
+                        <div class="selector-group">
+                            <label for="style-select">Aesthetic</label>
+                            <select id="style-select" class="style-select">
+                                <option value="minimalist">Minimalist</option>
+                                <option value="streetwear">Streetwear</option>
+                                <option value="smart_casual">Smart Casual</option>
+                            </select>
+                        </div>
+                        <div class="selector-group occasion-group">
+                            <label>Occasion</label>
+                            <div class="occasion-pills" id="occasion-pills">
+                                <button class="pill active" data-occasion="everyday">Everyday</button>
+                                <button class="pill" data-occasion="office">Office</button>
+                                <button class="pill" data-occasion="night_out">Night Out</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fashion-display">
+                        <div class="outfit-illustration" id="outfit-illustration"></div>
+                        <h2 id="outfit-label" class="outfit-label"></h2>
+                    </div>
+                    <div class="wardrobe">
+                        <h4 class="wardrobe-title">Curated Pieces</h4>
+                        <ul id="outfit-items" class="outfit-items">
+                            <!-- Items generated via JS -->
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            <div class="weather-column">
+                <section class="current-weather card mini-card">
+                    <h3 class="card-title">Weather Context</h3>
+                    <div class="weather-flex">
+                        <div class="temp-display">
+                            <span id="current-temp" class="large-temp"></span>
+                        </div>
+                        <div class="weather-details">
+                            <p id="current-desc" class="weather-desc"></p>
+                            <div class="weather-stats">
+                                <div class="stat"><span>Wind</span><strong id="current-wind"></strong></div>
+                                <div class="stat"><span>Precip</span><strong id="current-precip"></strong></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="forecast card mini-card">
+                    <h3 class="card-title">7-Day Outlook</h3>
+                    <div id="forecast-list" class="forecast-list">
+                        <!-- Forecast items generated via JS -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loaded as classic scripts to avoid file:// CORS issues for modules -->
+    <script src="outfits.js"></script>
+    <script src="animations.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
